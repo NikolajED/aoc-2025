@@ -32,7 +32,8 @@ for line in lines:
             current_position -= 1
             if current_position < min_position:
                 current_position = max_position
+        if current_position == min_position:
+            times_hit_min += 1
     print(f"New current position: {current_position}")
-    if current_position == min_position:
-        times_hit_min += 1
+
 print(f"Times hit min position: {times_hit_min}")
