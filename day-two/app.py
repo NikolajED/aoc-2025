@@ -13,14 +13,21 @@ for r in ranges:
     print(f"Start: {start}, End: {end}")
     lst = list(range(start, end + 1))
     for i in range(start, end + 1):
-        s1 = str(i)
-        # Found solution here https://www.geeksforgeeks.org/python/python-split-given-string-into-equal-halves/
-        s2, s3 = s1[:len(s1)//2 + len(s1)%2], s1[len(s1)//2 + len(s1)%2:]
-        if s2 == s3:
-            print(f"Found palindrome: {i}")
+        str_i = str(i)
+        if len(str_i) > 1 and all(ch == str_i[0] for ch in str_i):
+            print(f"Adding number with same digit pattern: {i}")
             number_list.append(i)
-
+        elif len(str_i) > 2:
+            for i in range(2, 100):
+                if len(str_i) % i == 0:
+                    chunk_size = len(str_i) // i
+                    chunk = str_i[:chunk_size]
+                    if chunk * i == str_i:
+                        print(f"Adding number with repeating pattern: {str_i}")
+                        number_list.append(str_i)
+                        break
+                   
 sum = 0
 for n in number_list:
-    sum += n
+    sum += int(n)
 print(sum)
